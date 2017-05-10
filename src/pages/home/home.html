@@ -4,15 +4,16 @@
   </ion-navbar>
 </ion-header>-->
 
-<ion-card>
-<ion-list inset>
-  <ion-item>
-    <ion-input type="text" placeholder="Enter a location. ex: 60403, las vegas, etc" clearInput="true" #location></ion-input>
+<ion-searchbar (ionInput)="getLocation(location.value)" animated="true" placeholder="Enter a location. ex: 60403, las vegas, etc" clearInput="true" autocomplete="true" #location></ion-searchbar>
+<ion-list>
+  <ion-item *ngFor="let l of locations | LocationArrPipe" (click)="setLocation(l.value.name)">
+    {{ l.value.name }}
   </ion-item>
-  <button ion-button icon-left (tap)="getLocation(location.value)"><ion-icon name="cloud"></ion-icon> Go</button>
 </ion-list>
 
-  <ion-card-header>{{ data?.location?.name }}, {{data?.location?.region}}</ion-card-header>
+<ion-card>
+<ion-card-header>{{ data?.location?.name }}, {{data?.location?.region}}</ion-card-header>
     <ion-card-content>
-  </ion-card-content>
+      <p>Current Temperature: {{data?.current?.temp_f}}&deg;</p>
+    </ion-card-content>
 </ion-card>
