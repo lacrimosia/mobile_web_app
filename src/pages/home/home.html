@@ -1,19 +1,21 @@
-<!--<ion-header>
+<ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <!--<ion-title>Weather Application</ion-title> -->
+    <ion-searchbar (ionInput)="getLocation(location.value);  showSuggestions();" (ionClear)="resetLocation()" animated="true" placeholder="Enter a location. ex: 60403, las vegas, etc" clearInput="true" autocomplete="true" #location></ion-searchbar>
   </ion-navbar>
-</ion-header>-->
+</ion-header>
 
-<ion-searchbar (ionInput)="getLocation(location.value)" animated="true" placeholder="Enter a location. ex: 60403, las vegas, etc" clearInput="true" autocomplete="true" #location></ion-searchbar>
-<ion-list>
-  <ion-item *ngFor="let l of locations | LocationArrPipe" (click)="setLocation(l.value.name)">
+<ion-content>
+<ion-list *ngIf="show==true">
+  <ion-item *ngFor="let l of locations | LocationArrPipe" (click)="setLocation(l.value.name); hideSuggestions();">
     {{ l.value.name }}
   </ion-item>
 </ion-list>
-
 <ion-card>
 <ion-card-header>{{ data?.location?.name }}, {{data?.location?.region}}</ion-card-header>
     <ion-card-content>
       <p>Current Temperature: {{data?.current?.temp_f}}&deg;</p>
     </ion-card-content>
 </ion-card>
+</ion-content>
+

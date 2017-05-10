@@ -19,8 +19,8 @@ import { LocationArrPipe } from '../pipes/location-arr/location-arr';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage,
-    LocationArrPipe
+    LocationArrPipe,
+    TabsPage
   ],
   imports: [
     BrowserModule,
