@@ -1,3 +1,19 @@
 page-home {
+ 
+}
 
+.sevenDayForecast{
+	display: inline-flex; 
+	flex-wrap:nowrap;
+}
+
+.page1{
+	background:url('http://www.healingandtransformation.com/wp-content/uploads/2014/05/bigstock-Sky-and-clouds-background-26443844.jpg') no-repeat;
+ background-size: cover;
+}
+
+.card{
+	padding: 30px;
+	/*border: 1px solid #999;*/
+	text-align:center;
 }

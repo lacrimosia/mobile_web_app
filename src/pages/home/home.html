@@ -14,19 +14,26 @@
   </ion-item>
 </ion-list>
 <ion-slides pager>
-<ion-slide>
+<ion-slide class="page1">
 <h1>{{ data?.location?.name }}, {{data?.location?.region}}</h1>
     
       <img src="{{data?.current?.condition?.icon}}" [ngStyle]="{'width': '75px !important'}" />
       <p>Current Temperature: {{data?.current?.temp_f}}&deg;</p>
-   
 
-<ion-item>
+      <div *ngFor="let f of forecast" class="sevenDayForecast">
+       <div class="card">
+           <img [src]="f.day.condition.icon"/>
+          <div><small>{{f.date}}</small></div>
+          <div>Low: {{ f.day.mintemp_f }}, High: {{ f.day.maxtemp_f }}</div>
+       </div>
+      </div>
+
+<!--<ion-item>
   <ion-range [(ngModel)]="brightness">
     <ion-icon range-left small name="sunny"></ion-icon>
     <ion-icon range-right name="sunny"></ion-icon>
   </ion-range>
-</ion-item>
+</ion-item>-->
 </ion-slide>
 
 <ion-slide style="background-color: blue">

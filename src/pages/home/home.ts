@@ -15,11 +15,14 @@ export class HomePage {
   result: any;
   query: any;
   show = true;
+  forecast: any;
+  day: any;
 
   constructor(public navCtrl: NavController, public http: Http) {
     this.http.get('http://api.apixu.com/v1/current.json?key=74d49cd76a79430cad0214409170805&q=89110').map(res => res.json()).subscribe(data => {
         this.data = data;
     });
+    this.getSevenDayForecast(89110);
   }
 
   getLocation(query){
@@ -30,6 +33,7 @@ export class HomePage {
     }, err => {
         console.log(err);
     });
+     this.getSevenDayForecast(this.query);
   }
 
   setLocation(name){
@@ -44,6 +48,15 @@ export class HomePage {
    resetLocation(){
     this.http.get('http://api.apixu.com/v1/current.json?key=74d49cd76a79430cad0214409170805&q=Paris').map(res => res.json()).subscribe(result => {
        this.data = result;
+     }, err => {
+        console.log(err);
+     });
+   }
+
+   getSevenDayForecast(query){
+     this.http.get('http://api.apixu.com/v1/forecast.json?key=74d49cd76a79430cad0214409170805&q='+query+'&days=7').map(res => res.json()).subscribe(result => {
+       this.forecast = result.forecast.forecastday;
+       console.log(this.forecast);
      }, err => {
         console.log(err);
      });
